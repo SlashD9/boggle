@@ -60,3 +60,17 @@ class TestBoggle(unittest.TestCase):
         self.assertIn((2, 1), neighbours)
         self.assertIn((2, 2), neighbours)
         self.assertIn((2, 3), neighbours)
+        
+    def test_all_grid_neighbours(self):
+        """
+        Ensure that all of the grid positions have neighbours
+        """
+        grid = boggle.make_grid(2, 2)
+        neighbours = boggle.all_grid_neighbours(grid)
+        self.assertEqual(len(neighbours), len(grid))
+        for pos in grid:
+            others = list(grid) # Creates a new list from the dictionary's keys
+            others.remove(pos)
+            self.assertListEqual(sorted(neighbours[pos]), sorted(others))
+            
+            
