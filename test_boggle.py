@@ -73,4 +73,14 @@ class TestBoggle(unittest.TestCase):
             others.remove(pos)
             self.assertListEqual(sorted(neighbours[pos]), sorted(others))
             
-            
+    def test_converting_a_path_to_a_word(self):
+        """
+        Ensure that paths can be converted to words
+        """
+        grid = boggle.make_grid(2, 2)
+        oneLetterWord = boggle.path_to_word(grid, [(0, 0)])
+        twoLetterWord = boggle.path_to_word(grid, [(0, 0), (1, 1)])
+        self.assertEqual(oneLetterWord, grid [(0, 0)])
+        self.assertEqual(twoLetterWord, grid [(0, 0)] + grid[(1, 1)])
+        
+        
