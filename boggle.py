@@ -8,7 +8,14 @@ def make_grid(width, height):
     
     We use the random - choice and send it ascii_uppercase to generate letters
     for each of the grid coordinates
+    
+    from string import ascii_uppercase just returns 26 capital letters A-Z
     """
+    # Make a grid e.g. make_grid(2, 3) would be
+    # [] [] []
+    # [] [] [] 
+    # the row is the height and the col is the width
+    # now fill each one of them with captial letters
     return {(row, col): choice(ascii_uppercase) 
         for row in range(height)
         for col in range(width)
@@ -47,9 +54,15 @@ def all_grid_neighbours(grid):
     Get all the possible neighbours for each position in 
     the grid
     """
+    # create a dictionary of neighbours
     neighbours = {}
+    # for each position in the grid
     for position in grid:
+        # call the neighbours_of_position function to get the positions 
+        # neighbours
         position_neighbours = neighbours_of_position(position)
+        # build our neighbours dictionary: break up our position_neighbours 
+        # variable and put it as a neighbour[position] if its in the grid 
         neighbours[position] = [p for p in position_neighbours if p in grid]
     return neighbours
     

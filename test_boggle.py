@@ -43,15 +43,17 @@ class TestBoggle(unittest.TestCase):
         conatains letters
         """
         grid = boggle.make_grid(2, 3)
+        # for the empty space in each of the grid blocks
         for letter in grid.values():
+            # make sure there is a letter in each of them
             self.assertIn(letter, ascii_uppercase)
             
     def test_neighbours_of_a_position(self):
         """
         Ensure that a position has 8 neighbours
         """
-        coods = (1, 2)
-        neighbours = boggle.neighbours_of_position(coods)
+        coords = (1, 2)
+        neighbours = boggle.neighbours_of_position(coords)
         self.assertIn((0, 1), neighbours)
         self.assertIn((0, 2), neighbours)
         self.assertIn((0, 3), neighbours)
@@ -65,12 +67,24 @@ class TestBoggle(unittest.TestCase):
         """
         Ensure that all of the grid positions have neighbours
         """
+        # make a grid that is two in height and 2 in width
         grid = boggle.make_grid(2, 2)
+        # gets all the neighbours for the grid
+        # it returns a dictionary of key(position) and 
+        # value(list of neighbouring positions)
         neighbours = boggle.all_grid_neighbours(grid)
+        # a grid that is 2 x 2 will have 4 entries therfore 
+        # len(neighbours should be 4 and len(grid) the same
         self.assertEqual(len(neighbours), len(grid))
+        # iterate through the positions in the grid. For each position, 
+        # the neighbours are the other 3 positions on the grid. So, we 
+        # create the others list which is the full grid, minus the 
+        # position in question
         for pos in grid:
             others = list(grid) # Creates a new list from the dictionary's keys
             others.remove(pos)
+            # asserts on line 8 that these other positions are the neighbours 
+            # of the position being checked
             self.assertListEqual(sorted(neighbours[pos]), sorted(others))
             
     def test_converting_a_path_to_a_word(self):
