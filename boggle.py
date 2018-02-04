@@ -103,13 +103,13 @@ def get_dictionary(dictionary_file):
     Load Dictionary file
     """
     with open(dictionary_file) as f:
-        return [w.strip().upper() for w in f]
+        return {w.strip().upper() for w in f}
         
 def main():
     """
     This is th efunction that will run the whole project
     """
-    grid = make_grid(3, 3)
+    grid = make_grid(3, 3) # Takes a long time for a grid of 4 , 4
     dictionary = get_dictionary('words.txt')
     words = search(grid, dictionary)
     for word in words:
